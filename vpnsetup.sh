@@ -431,12 +431,17 @@ service fail2ban start
 service ipsec start
 service xl2tpd start
 
-cat <<EOF
+cat <<'EOF'
 
 ================================================
 
 IPsec VPN server is now ready for use!
 
+EOF
+
+# Print details only in a terminal
+if [ -t 1 ]; then
+cat <<EOF
 Connect to your new VPN with these details:
 
 Server IP: $PUBLIC_IP
@@ -449,6 +454,10 @@ Write these down. You'll need them to connect!
 Important Notes:   https://git.io/vpnnotes
 Setup VPN Clients: https://git.io/vpnclients
 
+EOF
+fi
+
+cat <<'EOF'
 ================================================
 
 EOF
